@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +15,6 @@ public class Authority implements GrantedAuthority {
     @Id
     @GeneratedValue
     private Long id;
-
 
     private String authority;
 }
