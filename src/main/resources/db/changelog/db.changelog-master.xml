@@ -2,44 +2,86 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet id="users-table" author="your_author">
-        <createTable tableName="users">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)"/>
-            <column name="surname" type="VARCHAR(255)"/>
-            <column name="username" type="VARCHAR(255)"/>
-            <column name="password" type="VARCHAR(255)"/>
-            <column name="email" type="VARCHAR(255)"/>
-            <column name="picture" type="VARCHAR(255)"/>
-            <column name="created_date" type="TIMESTAMP"/>
-            <column name="last_modified_date" type="TIMESTAMP"/>
-            <column name="version" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="authority-table" author="your_author">
+    <changeSet id="1708602651141-2"
+               author="poyraz.ari (generated)">
         <createTable tableName="authority">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+            <column
+                    autoIncrement="true"
+                    startWith="1"
+                    name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_authority"/>
             </column>
-            <column name="authority" type="VARCHAR(255)"/>
+            <column name="authority"
+                    type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-
-    <changeSet id="create-users-authority-table" author="your_author">
+    <changeSet id="1708602651141-3"
+               author="poyraz.ari (generated)">
         <createTable tableName="user_authorities">
-            <column name="user_id" type="BIGINT">
-                <constraints references="users(id)" foreignKeyName="fk_user_authorities_users"/>
+            <column name="authority_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
             </column>
-            <column name="authority_id" type="BIGINT">
-                <constraints references="authority(id)" foreignKeyName="fk_user_authorities_authority"/>
+            <column name="user_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet id="1708602651141-4"
+               author="poyraz.ari (generated)">
+        <createTable tableName="users">
+            <column
+                    autoIncrement="true"
+                    startWith="1"
+                    name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_users"/>
+            </column>
+            <column name="version"
+                    type="BIGINT"/>
+            <column name="created_date"
+                    type="DATETIME"/>
+            <column name="last_modified_date"
+                    type="DATETIME"/>
+            <column name="name"
+                    type="VARCHAR(255)"/>
+            <column name="surname"
+                    type="VARCHAR(255)"/>
+            <column name="username"
+                    type="VARCHAR(255)"/>
+            <column name="password"
+                    type="VARCHAR(255)"/>
+            <column name="email"
+                    type="VARCHAR(255)"/>
+            <column name="picture"
+                    type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1708602651141-5"
+               author="poyraz.ari (generated)">
+        <addForeignKeyConstraint baseColumnNames="authority_id"
+                                 baseTableName="user_authorities"
+                                 constraintName="fk_user_on_authority"
+                                 referencedColumnNames="id"
+                                 referencedTableName="authority"/>
+    </changeSet>
+    <changeSet id="1708602651141-6"
+               author="poyraz.ari (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_authorities"
+                                 constraintName="fk_authority_on_users"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
 
 </databaseChangeLog>
