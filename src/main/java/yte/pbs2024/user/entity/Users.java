@@ -22,7 +22,7 @@ public class Users extends BaseEntity implements UserDetails {
     private String email;
     private String picture;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_authorities",
             joinColumns = @JoinColumn(name ="user_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))

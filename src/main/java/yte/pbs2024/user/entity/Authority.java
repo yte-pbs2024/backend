@@ -6,10 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.List;
+
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@AllArgsConstructor
 public class Authority implements GrantedAuthority {
 
     @Id
@@ -17,5 +19,11 @@ public class Authority implements GrantedAuthority {
     private Long id;
 
     private String authority;
+
+    @ManyToMany(mappedBy = "authorities")
+    private List<Users> users;
+    public Authority( String authority) {
+        this.authority = authority;
+    }
 }
 

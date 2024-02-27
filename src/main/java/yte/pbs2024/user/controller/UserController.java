@@ -26,5 +26,4 @@ public class UserController {
     public String admin(){
         return "admin";
     }
-
 }
