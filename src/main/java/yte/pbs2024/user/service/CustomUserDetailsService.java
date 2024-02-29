@@ -30,6 +30,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.save(new Users(null,null,"superUser",
                 passwordEncoder.encode("superUser"),null,null,
                 List.of(new Authority("ROLE_SUPER_USER"))));
+        userRepository.save(new Users("user","user","user",
+                passwordEncoder.encode("user"),"user","user",
+                List.of(new Authority("ROLE_USER"))));
         userRepository.save(new Users("admin","admin","admin",
                 passwordEncoder.encode("admin"),"admin","admin",
                 List.of(new Authority("ROLE_ADMIN"))));
