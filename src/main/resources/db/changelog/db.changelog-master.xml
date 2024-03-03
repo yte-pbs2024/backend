@@ -23,7 +23,7 @@
         </createTable>
     </changeSet>
     <changeSet id="2"
-               author="user(generated)">
+               author="user (generated)">
         <createTable tableName="user_authorities">
             <column name="authority_id"
                     type="BIGINT">
@@ -47,12 +47,6 @@
                              primaryKey="true"
                              primaryKeyName="pk_users"/>
             </column>
-            <column name="version"
-                    type="BIGINT"/>
-            <column name="created_date"
-                    type="DATETIME"/>
-            <column name="last_modified_date"
-                    type="DATETIME"/>
             <column name="name"
                     type="VARCHAR(255)"/>
             <column name="surname"
@@ -65,6 +59,12 @@
                     type="VARCHAR(255)"/>
             <column name="picture"
                     type="VARCHAR(255)"/>
+            <column name="version"
+                    type="BIGINT"/>
+            <column name="created_date"
+                    type="DATETIME"/>
+            <column name="last_modified_date"
+                    type="DATETIME"/>
         </createTable>
     </changeSet>
     <changeSet id="4"
@@ -83,5 +83,4 @@
                                  referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-
 </databaseChangeLog>
