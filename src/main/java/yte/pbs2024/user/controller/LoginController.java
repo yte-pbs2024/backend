@@ -9,11 +9,10 @@ import yte.pbs2024.user.service.LoginService;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class LoginController {
 
     private final LoginService loginService;
-
     @PostMapping("/login")
     public String login(@RequestBody @Valid LoginRequest loginRequest){
         return loginService.login(loginRequest);

@@ -26,7 +26,7 @@ public class SecurityConfiguration  {
                 .logout(AbstractHttpConfigurer::disable)
                 .httpBasic(withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
-                .cors(withDefaults())
+                //.cors(withDefaults())
                 .sessionManagement(session -> session.requireExplicitAuthenticationStrategy(false))
                 .build();
     }
