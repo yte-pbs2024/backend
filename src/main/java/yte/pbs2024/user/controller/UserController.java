@@ -1,29 +1,51 @@
 package yte.pbs2024.user.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import yte.pbs2024.common.response.MessageResponse;
+import yte.pbs2024.user.controller.request.UserAddRequest;
+import yte.pbs2024.user.controller.request.UserUpdateRequest;
+import yte.pbs2024.user.controller.response.UserResponse;
+import yte.pbs2024.user.entity.Users;
+import yte.pbs2024.user.service.UserService;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/users")
+@RequiredArgsConstructor
+@Validated
 public class UserController {
-    @GetMapping("/standard-user")
-    @PreAuthorize("hasAnyRole('STANDARD_USER','AUTHORIZED_USER','SUPER_USER','ADMIN')")
-    public String standard_user(){
-        return "standard user";
+//
+    private final UserService userService;
+    @PostMapping
+    public MessageResponse addUser(@RequestBody @Valid UserAddRequest userAddRequest){
+        return userService.addUser(userAddRequest.toEntity());
     }
-    @GetMapping("/authorized-user")
-    @PreAuthorize("hasAnyRole('AUTHORIZED_USER','SUPER_USER','ADMIN')")
-    public String authorize_user(){
-        return "authorized user";
+    @GetMapping("/{id}")
+    public UserResponse getUserById(@NotNull @PathVariable Long id){
+        Users users = userService.getUserById(id);
+        return new UserResponse(users);
     }
-    @GetMapping("/super-user")
-    @PreAuthorize("hasAnyRole('SUPER_USER','ADMIN')")
-    public String super_user(){
-        return "super user";
+
+    @GetMapping
+    public List<UserResponse> getUsers(){
+        List<Users> users = userService.getUsers();
+        return users.stream()
+                .map(UserResponse::new)
+                .toList();
     }
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String admin(){
-        return "admin";
+    @DeleteMapping("/{id}")
+    public MessageResponse deleteUser(@PathVariable Long id){
+        return userService.deleteUser(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponse updateUser(@PathVariable  Long id, @RequestBody UserUpdateRequest userUpdateRequest){
+        return userService.updateUser(id, userUpdateRequest);
+
     }
 }

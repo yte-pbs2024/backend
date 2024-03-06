@@ -21,18 +21,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     @PostConstruct
     public void init(){
-        userRepository.save(new Users(null,null,"standardUser",
-                passwordEncoder.encode("standardUser"),null,null,
-                List.of(new Authority("ROLE_STANDARD_USER"))));
-        userRepository.save(new Users(null,null,"authorizedUser",
-                passwordEncoder.encode("authorizedUser"),null,null,
-                List.of(new Authority("ROLE_AUTHORIZED_USER"))));
-        userRepository.save(new Users(null,null,"superUser",
-                passwordEncoder.encode("superUser"),null,null,
-                List.of(new Authority("ROLE_SUPER_USER"))));
         userRepository.save(new Users("user","user","user",
                 passwordEncoder.encode("user"),"user","user",
                 List.of(new Authority("ROLE_USER"))));
+        userRepository.save(new Users("standardUser","standardUser","standardUser",
+                passwordEncoder.encode("standardUser"),null,null,
+                List.of(new Authority("ROLE_STANDARD_USER"))));
+        userRepository.save(new Users("authorizedUser","authorizedUser","authorizedUser",
+                passwordEncoder.encode("authorizedUser"),"authorizedUser@gmail.com","authorizedUser",
+                List.of(new Authority("ROLE_AUTHORIZED_USER"))));
+        userRepository.save(new Users("superUser","superUser","superUser",
+                passwordEncoder.encode("superUser"),"superUser@gmail.com","superUser",
+                List.of(new Authority("ROLE_SUPER_USER"))));
         userRepository.save(new Users("admin","admin","admin",
                 passwordEncoder.encode("admin"),"admin","admin",
                 List.of(new Authority("ROLE_ADMIN"))));
