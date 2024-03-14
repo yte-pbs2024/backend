@@ -1,9 +1,7 @@
 package yte.pbs2024.user.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import yte.pbs2024.common.BaseEntity;
 import yte.pbs2024.user.controller.request.UserUpdateRequest;
@@ -19,6 +17,7 @@ public class Users extends BaseEntity implements UserDetails {
     private String name;
     private String surname;
     private String username;
+    @Setter
     private String password;
     private String email;
     private String picture;
