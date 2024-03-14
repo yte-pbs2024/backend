@@ -1,0 +1,53 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1" author="user (generated)">
+        <insert tableName="authority">
+            <column name="authority" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="authority">
+            <column name="authority" value="ROLE_STANDARD_USER"/>
+        </insert>
+        <insert tableName="authority">
+            <column name="authority" value="ROLE_AUTHORIZED_USER"/>
+        </insert>
+        <insert tableName="authority">
+            <column name="authority" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+    <changeSet id="2" author="user" context="dev">
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="name" value="user"/>
+            <column name="surname" value="user"/>
+            <column name="username" value="user"/>
+            <column name="password" value="user"/>
+            <column name="email" value="user@gmail.com"/>
+            <column name="picture" value="p"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="name" value="admin"/>
+            <column name="surname" value="admin"/>
+            <column name="username" value="admin"/>
+            <column name="password" value="$234123asdfasdfasdfs"/>
+            <column name="email" value="admin@gmail.com"/>
+            <column name="picture" value="p"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="user" context="dev">
+        <insert tableName="user_authorities">
+            <column name="authority_id" value="1"/>
+            <column name="user_id" value="1"/>
+        </insert>
+        <insert tableName="user_authorities">
+            <column name="authority_id" value="2"/>
+            <column name="user_id" value="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

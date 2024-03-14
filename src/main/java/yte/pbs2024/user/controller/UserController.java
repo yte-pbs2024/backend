@@ -25,6 +25,7 @@ public class UserController {
     public MessageResponse addUser(@RequestBody @Valid UserAddRequest userAddRequest){
         return userService.addUser(userAddRequest.toEntity());
     }
+
     @GetMapping("/{id}")
     public UserResponse getUserById(@NotNull @PathVariable Long id){
         Users users = userService.getUserById(id);
@@ -38,6 +39,7 @@ public class UserController {
                 .map(UserResponse::new)
                 .toList();
     }
+
     @DeleteMapping("/{id}")
     public MessageResponse deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
