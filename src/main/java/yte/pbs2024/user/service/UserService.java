@@ -3,10 +3,14 @@ package yte.pbs2024.user.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import yte.pbs2024.common.response.MessageResponse;
 import yte.pbs2024.common.response.MessageType;
 import yte.pbs2024.user.controller.request.UserUpdateRequest;
+import yte.pbs2024.user.controller.response.UserResponse;
 import yte.pbs2024.user.entity.Users;
 import yte.pbs2024.user.repository.UserRepository;
 
@@ -49,4 +53,12 @@ public class UserService {
 
         return new MessageResponse("Student has been updated", MessageType.SUCCESS);
     }
+
+    public UserResponse getCurrentUserDetails() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Users user = (Users) authentication.getPrincipal();
+        return new UserResponse(user);
+    }
+
 }
+

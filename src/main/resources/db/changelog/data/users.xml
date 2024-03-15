@@ -27,6 +27,8 @@
             <column name="password" value="user"/>
             <column name="email" value="user@gmail.com"/>
             <column name="picture" value="p"/>
+            <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
         <insert tableName="users">
             <column name="id" value="2"/>
@@ -36,6 +38,8 @@
             <column name="password" value="$234123asdfasdfasdfs"/>
             <column name="email" value="admin@gmail.com"/>
             <column name="picture" value="p"/>
+            <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
     </changeSet>
 

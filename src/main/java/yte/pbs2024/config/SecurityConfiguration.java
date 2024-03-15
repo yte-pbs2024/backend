@@ -25,11 +25,13 @@ public class SecurityConfiguration  {
         return http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(new AntPathRequestMatcher("/api/login")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/logout")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
-                .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutSuccessUrl("/api/login").logoutUrl("/logout").permitAll())
+
+                //.logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutSuccessUrl("/api/login").logoutUrl("/logout").permitAll())
                 //.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .sessionManagement(session -> session.requireExplicitAuthenticationStrategy(true))
                 .build();
