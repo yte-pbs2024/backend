@@ -40,6 +40,10 @@
             <column name="picture" value="p"/>
             <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="social_security_number" value="12036422309" />
+            <column name="gender" value="M" />
+            <column name="birth_date" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="phone_number" valueComputed="05320123456" />
         </insert>
     </changeSet>
 

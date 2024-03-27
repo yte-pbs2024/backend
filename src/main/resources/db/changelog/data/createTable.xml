@@ -62,6 +62,14 @@
                     type="DATETIME"/>
             <column name="last_modified_date"
                     type="DATETIME"/>
+            <column name="social_security_number"
+                    type="VARCHAR(255)"/>
+            <column name="gender"
+                    type="VARCHAR(255)"/>
+            <column name="birth_date"
+                    type="DATETIME"/>
+            <column name="phone_number"
+                    type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="4"

@@ -6,21 +6,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 import yte.pbs2024.common.BaseEntity;
 import yte.pbs2024.user.controller.request.UserUpdateRequest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @AllArgsConstructor
+@Setter
 public class Users extends BaseEntity implements UserDetails {
 
     private String name;
     private String surname;
     private String username;
-    @Setter
     private String password;
     private String email;
     private String picture;
+    private String socialSecurityNumber;
+    private String gender;
+    private LocalDateTime birthDate;
+    private String phoneNumber;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_authorities",

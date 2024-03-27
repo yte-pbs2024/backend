@@ -12,14 +12,20 @@ public record UserResponse(
         String surname,
         String email,
         String picture,
-
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime createdDate,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime lastModifiedDate,
 
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime lastModifiedDate
+        String socialSecurityNumber,
+
+        String gender,
+
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime birthDate,
+
+        String phoneNumber
 ) {
 
 
     public UserResponse(Users users) {
-        this(users.getId(), users.getName(), users.getSurname(), users.getEmail(), users.getPicture(), users.getCreatedDate(), users.getLastModifiedDate());
+        this(users.getId(), users.getName(), users.getSurname(), users.getEmail(), users.getPicture(), users.getCreatedDate(), users.getLastModifiedDate(), users.getSocialSecurityNumber(), users.getGender(), users.getBirthDate(), users.getPhoneNumber());
     }
 }
