@@ -44,6 +44,9 @@ public class UserService {
 
     @Transactional
     public MessageResponse updateUser(Long id, UserUpdateRequest userUpdateRequest) {
+        if (id == null) {
+            return new MessageResponse("ID cannot be null", MessageType.ERROR);
+        }
         Users users = userRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
