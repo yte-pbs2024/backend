@@ -1,12 +1,13 @@
 package yte.pbs2024.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import yte.pbs2024.common.BaseEntity;
 import yte.pbs2024.user.controller.request.UserUpdateRequest;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,8 @@ public class Users extends BaseEntity implements UserDetails {
     private String picture;
     private String socialSecurityNumber;
     private String gender;
-    private LocalDateTime birthDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
     private String phoneNumber;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -33,11 +35,14 @@ public class Users extends BaseEntity implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private List<Authority> authorities;
 
-    public Users(String name, String surname,   String email, String picture) {
+    public Users(String name, String surname,   String email, String picture, String ssn, String gender, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.picture = picture;
+        this.socialSecurityNumber = ssn;
+        this.gender = gender;
+        this.birthDate = birthDate;
     }
 
     @Override

@@ -59,15 +59,17 @@
             <column name="version"
                     type="BIGINT"/>
             <column name="created_date"
-                    type="DATETIME"/>
+                    type="DATETIME"
+                    defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date"
-                    type="DATETIME"/>
+                    type="DATETIME"
+                    defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="social_security_number"
                     type="VARCHAR(255)"/>
             <column name="gender"
                     type="VARCHAR(255)"/>
             <column name="birth_date"
-                    type="DATETIME"/>
+                    type="DATE"/>
             <column name="phone_number"
                     type="VARCHAR(255)"/>
         </createTable>

@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import yte.pbs2024.common.response.MessageResponse;
 import yte.pbs2024.common.response.MessageType;
 import yte.pbs2024.user.controller.request.UserUpdateRequest;
@@ -14,6 +13,8 @@ import yte.pbs2024.user.controller.response.UserResponse;
 import yte.pbs2024.user.entity.Users;
 import yte.pbs2024.user.repository.UserRepository;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -21,8 +22,17 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     public MessageResponse addUser(Users users){
+
+        LocalDate birthDate = users.getBirthDate();
+        long age = Period.between(birthDate, LocalDate.now()).getYears();
+
+        if (age < 18) {
+            return new MessageResponse("User must be 18 years or older", MessageType.ERROR);
+        }
+
+        // Save the user as normal if over 18
         userRepository.save(users);
-        return new MessageResponse("User has been added successfully", MessageType.SUCCESS);
+        return new MessageResponse("User registered successfully", MessageType.SUCCESS);
 
     }
 

@@ -3,6 +3,7 @@ package yte.pbs2024.user.controller.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import yte.pbs2024.user.entity.Users;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record UserResponse(
@@ -12,14 +13,16 @@ public record UserResponse(
         String surname,
         String email,
         String picture,
+
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime createdDate,
+
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime lastModifiedDate,
 
         String socialSecurityNumber,
 
         String gender,
 
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime birthDate,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDate birthDate,
 
         String phoneNumber
 ) {

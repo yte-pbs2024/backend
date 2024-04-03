@@ -3,8 +3,6 @@ package yte.pbs2024.user.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import yte.pbs2024.common.response.MessageResponse;
@@ -13,7 +11,6 @@ import yte.pbs2024.user.controller.request.UserUpdateRequest;
 import yte.pbs2024.user.controller.response.UserResponse;
 import yte.pbs2024.user.entity.Users;
 import yte.pbs2024.user.service.UserService;
-
 import java.util.List;
 
 @RestController
@@ -21,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Validated
 public class UserController {
-//
+    //
     private final UserService userService;
     @PostMapping
     public MessageResponse addUser(@RequestBody @Valid UserAddRequest userAddRequest){

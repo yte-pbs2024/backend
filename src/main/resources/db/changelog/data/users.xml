@@ -29,20 +29,24 @@
             <column name="picture" value="p"/>
             <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="social_security_number" value="69818911826" />
+            <column name="gender" value="F" />
+            <column name="birth_date" valueComputed="CURRENT_DATE" />
+            <column name="phone_number" valueComputed="05321623456" />
         </insert>
         <insert tableName="users">
             <column name="id" value="2"/>
             <column name="name" value="admin"/>
             <column name="surname" value="admin"/>
             <column name="username" value="admin"/>
-            <column name="password" value="$234123asdfasdfasdfs"/>
+            <column name="password" value="admin"/>
             <column name="email" value="admin@gmail.com"/>
             <column name="picture" value="p"/>
             <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
-            <column name="social_security_number" value="12036422309" />
+            <column name="social_security_number" value="12306422309" />
             <column name="gender" value="M" />
-            <column name="birth_date" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="birth_date" valueComputed="CURRENT_DATE" />
             <column name="phone_number" valueComputed="05320123456" />
         </insert>
     </changeSet>
