@@ -20,19 +20,23 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private final UserRepository userRepository;
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String username = (String) authentication.getPrincipal();
-        String password = (String) authentication.getCredentials();
+        try {
+            String username = (String) authentication.getPrincipal();
+            String password = (String) authentication.getCredentials();
 
-
-        Optional<Users> optionalUser = userRepository.findByUsername(username);
-        if (optionalUser.isPresent()) {
-            Users user = optionalUser.get();
-            if (password.equals(user.getPassword())) {
-                return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            Optional<Users> optionalUser = userRepository.findByUsername(username);
+            if (optionalUser.isPresent()) {
+                Users user = optionalUser.get();
+                if (password.equals(user.getPassword())) {
+                    return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                }
             }
+            throw new BadCredentialsException("Username or Password is wrong");
+        } catch (Exception ex) {
+            throw new BadCredentialsException("Authentication error", ex);
         }
-        throw new BadCredentialsException("Username or Password is wrong");
     }
+
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);

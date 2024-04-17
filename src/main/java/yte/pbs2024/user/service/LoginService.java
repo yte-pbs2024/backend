@@ -34,6 +34,7 @@ public class LoginService {
     }
     public LoginResponse login(LoginRequest loginRequest) {
         try {
+
             Authentication authenticated = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
 
             if (authenticated.isAuthenticated()) {
@@ -57,7 +58,7 @@ public class LoginService {
                         null,
                         null,
                         MessageType.ERROR,
-                        "Authentication failed"
+                        "xx"
                 );
             }
         } catch (AuthenticationException ex) {
@@ -66,7 +67,7 @@ public class LoginService {
                     null,
                     null,
                     MessageType.ERROR,
-                    "Authentication error"
+                    ex.getMessage()
             );
         }
     }

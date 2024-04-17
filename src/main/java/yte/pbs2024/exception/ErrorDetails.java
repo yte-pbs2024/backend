@@ -2,7 +2,6 @@ package yte.pbs2024.exception;
 
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data

@@ -24,13 +24,11 @@ public class UserController {
     public MessageResponse addUser(@RequestBody @Valid UserAddRequest userAddRequest)  {
         return userService.addUser(userAddRequest.toEntity());
     }
-
     @GetMapping("/{id}")
     public UserResponse getUserById(@NotNull @PathVariable Long id){
         Users users = userService.getUserById(id);
         return new UserResponse(users);
     }
-
     @GetMapping
     public List<UserResponse> getUsers(){
         List<Users> users = userService.getUsers();
@@ -38,7 +36,6 @@ public class UserController {
                 .map(UserResponse::new)
                 .toList();
     }
-
     @DeleteMapping("/{id}")
     public MessageResponse deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
@@ -47,9 +44,7 @@ public class UserController {
     @PutMapping("/{id}")
     public MessageResponse updateUser(@PathVariable  Long id, @RequestBody UserUpdateRequest userUpdateRequest){
         return userService.updateUser(id, userUpdateRequest);
-
     }
-
     @GetMapping("/current-user")
     public UserResponse getCurrentUserDetails() {
         return userService.getCurrentUserDetails();

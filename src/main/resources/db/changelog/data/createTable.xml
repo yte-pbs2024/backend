@@ -80,4 +80,7 @@
                                  referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
+    <changeSet id="6" author="user (generated)">
+        <addUniqueConstraint tableName="users" columnNames="email" constraintName="unique_email_constraint"/>
+    </changeSet>
 </databaseChangeLog>
