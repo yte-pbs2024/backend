@@ -14,14 +14,14 @@ public record UserAddRequest(
         @NotBlank String surname,
         @NotBlank @Email String email,
         @NotBlank String picture,
-        @NotBlank @Size(min = 11, max = 11, message = "SSN must be exactly 11 characters") String ssn,
+        @NotBlank @Size(min = 11, max = 11, message = "TC must be exactly 11 characters") String tc,
         @NotBlank String gender,
         @NotNull
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         LocalDate birthDate
 ) {
     public Users toEntity() {
-        return new Users(name, surname, email, picture, ssn, gender, birthDate);
+        return new Users(name, surname, email, picture, tc, gender, birthDate);
     }
 
 }

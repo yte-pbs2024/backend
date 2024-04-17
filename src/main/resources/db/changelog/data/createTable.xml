@@ -64,7 +64,7 @@
             <column name="last_modified_date"
                     type="DATETIME"
                     defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="social_security_number"
+            <column name="tc"
                     type="VARCHAR(255)"/>
             <column name="gender"
                     type="VARCHAR(255)"/>

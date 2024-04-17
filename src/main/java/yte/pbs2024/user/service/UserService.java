@@ -10,7 +10,9 @@ import yte.pbs2024.common.response.MessageResponse;
 import yte.pbs2024.common.response.MessageType;
 import yte.pbs2024.user.controller.request.UserUpdateRequest;
 import yte.pbs2024.user.controller.response.UserResponse;
+import yte.pbs2024.user.entity.Authority;
 import yte.pbs2024.user.entity.Users;
+import yte.pbs2024.user.repository.AuthorityRepository;
 import yte.pbs2024.user.repository.UserRepository;
 
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final AuthorityRepository authorityRepository;
     public MessageResponse addUser(Users users){
 
         LocalDate birthDate = users.getBirthDate();
@@ -55,13 +58,11 @@ public class UserService {
 
     @Transactional
     public MessageResponse updateUser(Long id, UserUpdateRequest userUpdateRequest) {
-        Users users = userRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-
-        users.update(userUpdateRequest);
-        userRepository.save(users);
-
-        return new MessageResponse("Student has been updated", MessageType.SUCCESS);
+        Users user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        List<Authority> newAuthorities = authorityRepository.findByAuthorityIn(userUpdateRequest.authorities());
+        user.update(userUpdateRequest, newAuthorities);
+        userRepository.save(user);
+        return new MessageResponse("User has been updated successfully", MessageType.SUCCESS);
     }
 
     public UserResponse getCurrentUserDetails() {

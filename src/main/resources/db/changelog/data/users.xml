@@ -27,9 +27,10 @@
             <column name="password" value="user"/>
             <column name="email" value="user@gmail.com"/>
             <column name="picture" value="p"/>
+            <column name="version" value="0"/>
             <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
-            <column name="social_security_number" value="69818911826" />
+            <column name="tc" value="69818911826" />
             <column name="gender" value="F" />
             <column name="birth_date" valueComputed="CURRENT_DATE" />
             <column name="phone_number" valueComputed="05321623456" />
@@ -42,9 +43,10 @@
             <column name="password" value="admin"/>
             <column name="email" value="admin@gmail.com"/>
             <column name="picture" value="p"/>
+            <column name="version" value="0"/>
             <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
-            <column name="social_security_number" value="12306422309" />
+            <column name="tc" value="12306422309" />
             <column name="gender" value="M" />
             <column name="birth_date" valueComputed="CURRENT_DATE" />
             <column name="phone_number" valueComputed="05320123456" />
@@ -57,7 +59,7 @@
             <column name="user_id" value="1"/>
         </insert>
         <insert tableName="user_authorities">
-            <column name="authority_id" value="2"/>
+            <column name="authority_id" value="4"/>
             <column name="user_id" value="2"/>
         </insert>
     </changeSet>

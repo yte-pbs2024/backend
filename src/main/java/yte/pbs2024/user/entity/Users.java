@@ -23,7 +23,7 @@ public class Users extends BaseEntity implements UserDetails {
     private String password;
     private String email;
     private String picture;
-    private String socialSecurityNumber;
+    private String tc;
     private String gender;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
@@ -35,12 +35,12 @@ public class Users extends BaseEntity implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private List<Authority> authorities;
 
-    public Users(String name, String surname,   String email, String picture, String ssn, String gender, LocalDate birthDate) {
+    public Users(String name, String surname,   String email, String picture, String tc, String gender, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.picture = picture;
-        this.socialSecurityNumber = ssn;
+        this.tc = tc;
         this.gender = gender;
         this.birthDate = birthDate;
     }
@@ -65,10 +65,16 @@ public class Users extends BaseEntity implements UserDetails {
         return true;
     }
 
-    public void update(UserUpdateRequest userUpdateRequest) {
+    public void update(UserUpdateRequest userUpdateRequest, List<Authority> authorityList) {
+
         this.name = userUpdateRequest.name();
         this.surname = userUpdateRequest.surname();
         this.email = userUpdateRequest.email();
         this.picture = userUpdateRequest.picture();
+        this.gender = userUpdateRequest.gender();
+        this.birthDate = userUpdateRequest.birthDate();
+        this.phoneNumber = userUpdateRequest.phoneNumber();
+        this.authorities = authorityList;
+
     }
 }
