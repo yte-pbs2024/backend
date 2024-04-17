@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import yte.pbs2024.user.controller.request.LoginRequest;
+import yte.pbs2024.user.controller.response.LoginResponse;
 import yte.pbs2024.user.service.LoginService;
 
 @RestController
@@ -14,7 +15,7 @@ public class LoginController {
 
     private final LoginService loginService;
     @PostMapping("/login")
-    public String login(@RequestBody @Valid LoginRequest loginRequest){
+    public LoginResponse login(@RequestBody @Valid LoginRequest loginRequest){
         return loginService.login(loginRequest);
 
     }

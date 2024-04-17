@@ -20,7 +20,7 @@
     </changeSet>
     <changeSet id="2" author="user" context="dev">
         <insert tableName="users">
-            <column name="id" value="1"/>
+            <column name="id" value="1001"/>
             <column name="name" value="user"/>
             <column name="surname" value="user"/>
             <column name="username" value="user"/>
@@ -31,11 +31,11 @@
             <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
         <insert tableName="users">
-            <column name="id" value="2"/>
+            <column name="id" value="1002"/>
             <column name="name" value="admin"/>
             <column name="surname" value="admin"/>
             <column name="username" value="admin"/>
-            <column name="password" value="$234123asdfasdfasdfs"/>
+            <column name="password" value="admin"/>
             <column name="email" value="admin@gmail.com"/>
             <column name="picture" value="p"/>
             <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
@@ -46,11 +46,11 @@
     <changeSet id="3" author="user" context="dev">
         <insert tableName="user_authorities">
             <column name="authority_id" value="1"/>
-            <column name="user_id" value="1"/>
+            <column name="user_id" value="1001"/>
         </insert>
         <insert tableName="user_authorities">
-            <column name="authority_id" value="2"/>
-            <column name="user_id" value="2"/>
+            <column name="authority_id" value="4"/>
+            <column name="user_id" value="1002"/>
         </insert>
     </changeSet>
 
