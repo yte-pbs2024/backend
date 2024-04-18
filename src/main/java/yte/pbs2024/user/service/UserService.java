@@ -34,7 +34,7 @@ public class UserService {
 
     public Users getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() ->  new UserNotFoundException( id));
+                .orElseThrow(() ->  new UserNotFoundException("Kullanıcı bulunumadı"));
     }
     public List<Users> getUsers() {
         return userRepository.findAll();
@@ -43,7 +43,7 @@ public class UserService {
     @Transactional
     public MessageResponse deleteUser(Long id) {
         if(!userRepository.existsById(id)){
-            throw new UserNotFoundException( id);
+            throw new UserNotFoundException("Kullanıcı bulunumadı");
         }
         userRepository.deleteById(id);
         return new MessageResponse("Kişi başarılı bir şekilde silindi", MessageType.SUCCESS);
@@ -55,7 +55,7 @@ public class UserService {
             throw new UserNotFoundException(null);
         }
         Users users = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -> new UserNotFoundException("Kullanıcı bulunumadı"));
 
         users.update(userUpdateRequest);
         userRepository.save(users);
