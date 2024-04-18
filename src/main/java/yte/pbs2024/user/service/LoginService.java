@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 import yte.pbs2024.common.response.MessageType;
+import yte.pbs2024.exception.UserNotFoundException;
 import yte.pbs2024.user.controller.request.LoginRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -53,24 +54,12 @@ public class LoginService {
                         "Login is Successfully"
                 );
             } else {
-                return new LoginResponse(
-                        null,
-                        null,
-                        null,
-                        MessageType.ERROR,
-                        "xx"
-                );
+                throw new UserNotFoundException("Kullanıcı bulunamadı");
             }
-        } catch (AuthenticationException ex) {
-            return new LoginResponse(
-                    null,
-                    null,
-                    null,
-                    MessageType.ERROR,
-                    ex.getMessage()
-            );
+        }  catch (AuthenticationException ex) {
+            throw new UserNotFoundException("Kullanıcı adı veya şifre yanlış");
         }
-    }
+        }
 }
 
 
