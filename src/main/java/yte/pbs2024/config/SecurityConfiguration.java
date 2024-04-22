@@ -33,7 +33,8 @@ public class SecurityConfiguration  {
 
                 //.logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutSuccessUrl("/api/login").logoutUrl("/logout").permitAll())
                 //.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .sessionManagement(session -> session.requireExplicitAuthenticationStrategy(true))
+                //.sessionManagement(session -> session.requireExplicitAuthenticationStrategy(true))
+                .sessionManagement(session -> session.invalidSessionUrl("/login"))
                 .build();
     }
     @Bean
