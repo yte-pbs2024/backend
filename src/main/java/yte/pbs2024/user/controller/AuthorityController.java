@@ -1,35 +1,33 @@
 package yte.pbs2024.user.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import yte.pbs2024.user.controller.response.AuthorityResponse;
+import yte.pbs2024.user.service.AuthorityService;
+import java.util.ArrayList;
+import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthorityController {
-    @GetMapping("/standard-user")
-    @PreAuthorize("hasAnyRole('STANDARD_USER','AUTHORIZED_USER','SUPER_USER','ADMIN')")
-    public String standard_user(){
-        return "standard user";
-    }
-    @GetMapping("/authorized-user")
-    @PreAuthorize("hasAnyRole('AUTHORIZED_USER','SUPER_USER','ADMIN')")
-    public String authorize_user(){
-        return "authorized user";
-    }
-    @GetMapping("/super-user")
-    @PreAuthorize("hasAnyRole('SUPER_USER','ADMIN')")
-    public String super_user(){
-        return "super user";
-    }
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String admin(){
-        return "admin";
+
+    private final AuthorityService authorityService;
+
+    @GetMapping("/authorities")
+    public List<AuthorityResponse> getAllAuthorities() {
+        List<String> authorityNames = authorityService.getAllAuthorityNames();
+        List<Long> authorityIds = authorityService.getAllAuthorityIds();
+
+        List<AuthorityResponse> authorityResponses = new ArrayList<>();
+        for (int i = 0; i < authorityNames.size(); i++) {
+            authorityResponses.add(new AuthorityResponse(authorityIds.get(i), authorityNames.get(i)));
+        }
+
+        return authorityResponses;
     }
 }
