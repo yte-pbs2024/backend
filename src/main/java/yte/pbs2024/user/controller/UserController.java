@@ -22,7 +22,7 @@ public class UserController {
     private final UserService userService;
     @PostMapping
     public MessageResponse addUser(@RequestBody @Valid UserAddRequest userAddRequest)  {
-        return userService.addUser(userAddRequest.toEntity());
+        return userService.addUser(userAddRequest);
     }
     @GetMapping("/{id}")
     public UserResponse getUserById(@NotNull @PathVariable Long id){
