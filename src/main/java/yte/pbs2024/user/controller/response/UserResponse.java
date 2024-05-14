@@ -33,6 +33,7 @@ public record UserResponse(
 
 
     public UserResponse(Users users) {
-        this(users.getId(), users.getName(), users.getSurname(), users.getEmail(), users.getPicture(), users.getCreatedDate(), users.getLastModifiedDate(), users.getTc(), users.getGender(), users.getBirthDate(), users.getPhoneNumber(), users.getAuthorities().stream().map(Authority::getAuthority).collect(Collectors.toList()));
+        this(users.getId(), users.getName(), users.getSurname(), users.getEmail(), users.getPicture(), users.getCreatedDate(), users.getLastModifiedDate(), users.getTc(), users.getGender(), users.getBirthDate(), users.getPhoneNumber(),
+                users.getAuthorities().stream().map(Authority::getAuthority).collect(Collectors.toList()));
     }
 }

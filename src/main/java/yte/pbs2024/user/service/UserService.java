@@ -59,7 +59,7 @@ public class UserService {
     @Transactional
     public MessageResponse updateUser(Long id, UserUpdateRequest userUpdateRequest) {
         Users user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        List<Authority> newAuthorities = authorityRepository.findByAuthorityIn(userUpdateRequest.authorities());
+        List<Authority> newAuthorities = authorityRepository.findByIdIn(userUpdateRequest.authorities());
         user.update(userUpdateRequest, newAuthorities);
         userRepository.save(user);
         return new MessageResponse("User has been updated successfully", MessageType.SUCCESS);
@@ -71,5 +71,11 @@ public class UserService {
         return new UserResponse(user);
     }
 
+
+
+
+
 }
+
+
 

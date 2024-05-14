@@ -20,10 +20,9 @@ public record UserUpdateRequest(
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         LocalDate birthDate,
         @NotBlank String phoneNumber,
-         @NotBlank List<String> authorities
+         @NotNull List<Long> authorities
 
 
 ) {
-
 
 }
