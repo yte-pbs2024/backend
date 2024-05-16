@@ -59,9 +59,19 @@
             <column name="version"
                     type="BIGINT"/>
             <column name="created_date"
-                    type="DATETIME"/>
+                    type="DATETIME"
+                    defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="last_modified_date"
-                    type="DATETIME"/>
+                    type="DATETIME"
+                    defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="tc"
+                    type="VARCHAR(255)"/>
+            <column name="gender"
+                    type="VARCHAR(255)"/>
+            <column name="birth_date"
+                    type="DATE"/>
+            <column name="phone_number"
+                    type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="4"
